@@ -1,0 +1,20 @@
+apiVersion: skaffold/v3
+kind: Config
+metadata:
+  name: testing
+build:
+  artifacts:
+    - image: mkbadeniyi/telepresence_web
+      context: web
+      docker:
+        dockerfile: Dockerfile
+    - image: mkbadeniyi/telepresence_svc1
+      context: backend/svc1
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - infra/svc1_deployment.yaml
+    - infra/svc1_service.yaml
+    - infra/web_deployment.yaml
+    - infra/web_service.yaml
